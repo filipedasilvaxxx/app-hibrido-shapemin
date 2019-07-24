@@ -1,0 +1,49 @@
+
+
+
+@-webkit-keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; } 
+  }
+  @-moz-keyframes fadeIn {
+  0% { opacity: 0;}
+  100% { opacity: 1; }
+  }
+  @-o-keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+  }
+  @keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+  }
+
+  *{
+    @import url('https://fonts.googleapis.com/css?family=Shadows+Into+Light&display=swap');
+    font-family: 'Shadows Into Light', cursive;
+    font-size: 15px;
+    
+  }
+
+  .centralizarTexto{
+    text-align:center;
+  }
+  
+  .botao{
+    color: #000;
+  }
+
+
+  .fadeIn {
+    -webkit-animation: fadeIn 2s ease-in-out;
+    -moz-animation: fadeIn 2s ease-in-out;
+    -o-animation: fadeIn 2s ease-in-out;
+    animation: fadeIn 2s ease-in-out;
+    }
+
+
+  .hr {
+    border-bottom: 1px solid #ccc;
+    margin: 10px 0;
+    width: 100%;
+    }

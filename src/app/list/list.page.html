@@ -1,0 +1,92 @@
+
+  <ion-content padding>
+      
+    <ion-row style="margin-bottom:30px;margin-top:30px;">
+      <ion-col offset="3" >
+          <img class="login" style="margin-left:25px;" class="imga" src="../assets/1.png">
+      </ion-col>
+    </ion-row>
+
+    
+    <ion-row style="text-align:center;">
+      <ion-col>
+        <div>
+          <h1 >SHAPE MIN &copy;</h1>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-slides pager="false" [options]="slideOpts">
+  
+
+      <ion-slide>
+
+          <div>
+              <h1>Logar</h1>
+      
+              <div class="box1">
+                <ion-item>
+                  <ion-label class="">E-mail:</ion-label>
+                  <ion-input type="text" value="" #email></ion-input>
+                </ion-item>
+              </div>
+      
+              <div class="box2">
+              <ion-item>
+                <ion-label fixed>Senha:</ion-label>
+                <ion-input type="password" value="" #senha></ion-input>
+              </ion-item>
+            </div>
+      
+              <ion-button color="tertiary" (click)="logar()" expand="block" color="dark">Logar</ion-button>
+             </div>
+
+      </ion-slide>
+      <ion-slide>
+
+          <div>
+              <h1>Cadastre-se</h1>
+      
+              <div class="box1">
+                <ion-item>
+                  <ion-label class="">E-mail:</ion-label>
+                  <ion-input type="text" value="" #email></ion-input>
+                </ion-item>
+              </div>
+      
+              <div class="box2">
+              <ion-item>
+                <ion-label fixed>Senha:</ion-label>
+                <ion-input [type]="passwordType" value="" #senha></ion-input>
+                <ion-icon (click)="togglePassword()" name="eye"  ></ion-icon>
+              </ion-item>
+            </div>
+      
+              <ion-button color="tertiary" (click)="cadastrar()" expand="block" color="dark">Cadastrar</ion-button>
+             </div>
+
+      </ion-slide>
+    </ion-slides>
+
+    <div class="test">
+        <ion-segment>
+            <ion-segment-button checked (click)="anterior()">
+            <ion-label>Login</ion-label>
+          </ion-segment-button>
+          <ion-segment-button (click)="proximo()">
+            <ion-label>Cadastrar-se</ion-label>
+          </ion-segment-button>
+        
+        </ion-segment>
+      </div>
+ 
+    <div class="hr"></div> 
+    
+ 
+  
+  
+ 
+    </ion-content>
+
+
+

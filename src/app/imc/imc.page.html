@@ -1,0 +1,70 @@
+<ion-header>
+        
+  <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-back-button defaultHref="home-cliente"></ion-back-button>
+        
+      </ion-buttons>
+      <ion-buttons slot="secondary">
+        <ion-button (click)="logoff()" placeholder="Logar">
+          <ion-icon color="danger" slot="icon-only" name="log-out"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+      <ion-title style="text-align:center;font-size:25px;">SHAPE MIN.</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content padding class="fundo">
+    <ion-img src="../assets/12.jpg"></ion-img>
+
+  <ion-card>
+    <ion-card-content>
+      <h1 >
+        Para realizar o cálculo digite sua altura em metros (ex: 1,65), e o seu peso em Kg (ex: 65,750).
+      </h1>
+    </ion-card-content>
+  </ion-card>
+  <ion-list>
+
+    <ion-item>
+      <ion-label floating>
+         Digite sua altura
+      </ion-label>
+      <ion-input type="number" (input)="altura = $event.target.value"  placeholder="0.00" [brmasker]="{mask: '0.00', type:'num' , len:4}"></ion-input>
+    </ion-item>
+    <ion-item>
+      
+      <ion-label floating>
+        Digite seu peso
+      </ion-label>
+      <ion-input type="number" (input)="peso = $event.target.value"  placeholder="00.00" [brmasker]="{mask: '00.00', type:'num' , len:5}"></ion-input>
+    </ion-item>
+
+  </ion-list>
+
+  <ion-row>
+      <ion-col>
+    <button expand="full" class="btn btn-primary btn-block" (click)="calcular()">CALCULAR</button>
+    </ion-col>
+    </ion-row>
+  
+  
+  
+  
+  
+
+  <br>
+  
+  <div *ngIf="imc > 0">
+    <ion-card>
+      <ion-card-header>
+        IMC: {{ imc }}
+      </ion-card-header>
+      <ion-card-content>
+        <p><ion-icon margin="5px" name="md-send"></ion-icon>Situação: {{ condicao }}</p>
+        <br>
+        <p><ion-icon margin="5px" name="md-thumbs-up"></ion-icon>IMC saudável fica entre 18,5 a 25.</p>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

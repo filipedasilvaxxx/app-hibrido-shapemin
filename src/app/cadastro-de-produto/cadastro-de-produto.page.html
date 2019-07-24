@@ -1,0 +1,103 @@
+<ion-header>
+      
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="home-cliente"></ion-back-button>
+          
+        </ion-buttons>
+        <ion-buttons slot="secondary">
+          <ion-button (click)="logoff()" placeholder="Logar">
+            <ion-icon color="danger" slot="icon-only" name="log-out"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+        <ion-title style="text-align:center;font-size:25px;">SHAPE MIN.</ion-title>
+      </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+<form [formGroup]="formGroup">
+  <ion-row>
+    <ion-col>
+  <div class="form-group row">
+    <label for="inputEmail3" class="col-sm-2 col-form-label">Nome:</label>
+    <div class="col-sm-10">
+      <input type="email" formControlName="nome" class="form-control" id="inputEmail3" >
+      
+    </div>
+  </div>
+</ion-col>
+</ion-row>
+  <ion-row>
+    <ion-col>
+  <div class="form-group row">
+    <label for="inputEmail3" class="col-sm-2 col-form-label">Marca:</label>
+    <div class="col-sm-10">
+      <input type="email" class="form-control" formControlName="marca" id="inputEmail3" >
+      
+    </div>
+  </div>
+</ion-col>
+</ion-row>
+  <ion-row>
+    <ion-col>
+  <div class="form-group row">
+    <label for="inputEmail3" class="col-sm-2 col-form-label">Descrição:</label>
+    <div class="col-sm-10">
+      <input type="email" class="form-control" formControlName="descricao" id="inputEmail3" >
+    </div>
+  </div>
+</ion-col>
+</ion-row>
+  <ion-row>
+    <ion-col>
+  <div class="form-group row">
+    <label for="inputEmail3" class="col-sm-2 col-form-label">Código:</label>
+    <div class="col-sm-10">
+      <input type="email" class="form-control" id="inputEmail3" formControlName="codigo"  >
+    </div>
+  </div>
+</ion-col>
+</ion-row>
+  <ion-row>
+    <ion-col>
+  <div class="form-group row">
+    <label for="inputEmail3" class="col-sm-2 col-form-label">Preço:</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="inputEmail3"  formControlName="preco"  name="money"  placeholder="(R$) Real" [brmasker]="{money: true}">
+    </div>
+  </div>
+</ion-col>
+</ion-row>
+  <ion-row>
+    <ion-col>
+  <div class="form-group row">
+    <label for="inputEmail3" class="col-sm-2 col-form-label">Categoria:</label>
+    <div class="col-sm-10">
+       <ion-list>
+          <ion-item>
+              <ion-label>Escolha sua Categoria</ion-label>
+              <ion-select value="brown" okText="Continuar" cancelText="Cancelar"  formControlName="categoria" >
+                                                    //cancelText="Cancela"
+                <ion-select-option *ngFor="let cat of listaCategoria" value="{{cat.nome}}">{{cat.nome}}</ion-select-option>
+      
+              </ion-select>
+            </ion-item>
+       </ion-list>
+        
+    </div>
+  </div>
+</ion-col>
+</ion-row>
+
+<ion-row>
+  <ion-col>
+  <div class="form-group row">
+    <div class="col-sm-10">
+      <button type="submit" class="btn btn-primary btn-block" (click)="cadastrar()">Cadastrar</button>
+    </div>
+  </div>
+</ion-col>
+</ion-row>
+</form>
+</ion-content>

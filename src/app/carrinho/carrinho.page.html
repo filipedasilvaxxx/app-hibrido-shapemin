@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Bcaa Lista</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row>
+    <ion-col *ngFor="let list of listaProduto">
+      <ion-card>
+        <h1 orange>27</h1>
+        <p>{{list?.nome}}</p>
+        <button (click)="addCarrinho(nome)">Comprar</button>
+        
+        <ion-icon name="trash" (click)="removeCar(pedido?.produto)" size="large"></ion-icon>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+
+</ion-content>

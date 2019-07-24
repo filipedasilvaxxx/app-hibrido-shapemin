@@ -1,0 +1,183 @@
+<ion-header>
+
+
+  <ion-toolbar>
+    <ion-buttons slot="start">
+
+
+    </ion-buttons>
+    <ion-buttons slot="start">
+      <ion-button (click)="logoff()" placeholder="logoff">
+        <ion-icon color="danger" slot="start" name="log-out"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="secondary">
+      <ion-button (click)="perfil(loja)" placeholder="Logar">
+        <ion-icon slot="icon-only" name="contact"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title style="text-align:center;font-size:25px;margin-left:20px;  ">SHAPE MIN.</ion-title>
+  </ion-toolbar>
+
+  <ion-toolbar>
+    <ion-tabs>
+      <ion-tab-bar>
+        <ion-tab-button *ngIf="loja.nome==undefined" >
+          <ion-icon name="appstore" color="dark" ></ion-icon>
+          <ion-label (click)="cadLoja()"  color="dark">Cadastre sua Loja</ion-label>
+        </ion-tab-button>
+        <ion-tab-button>
+          <ion-icon name="add-circle" color="dark"></ion-icon>
+          <ion-label (click)="cadProdutos()" color="dark">Cadastro de Produtos</ion-label>
+        </ion-tab-button>
+        <ion-tab-button>
+          <ion-icon name="stats" color="dark"></ion-icon>
+          <ion-label (click)="imc()" color="dark">Imc</ion-label>
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-toolbar>
+
+
+</ion-header>
+
+<ion-content padding>
+
+
+ 
+  <ion-slides pager="true" [options]="slideOptsOne ">
+    <ion-slide *ngFor="let slide of slides">
+      <div>
+        <img [src]="slide.img">
+      </div>
+      <div>
+      </div>
+    </ion-slide>
+  </ion-slides>
+
+  <ion-searchbar #textoBusca animated  debounce="500"  (ionChange)="busca()" ></ion-searchbar>
+    
+    
+
+   <ion-item   *ngFor="let busca of listaDeProduto"   >
+    <ion-thumbnail slot="start" >
+      <img src="{{imagem}}">
+    </ion-thumbnail>
+    <ion-label>{{busca?.nome}}</ion-label>
+  </ion-item>
+  
+  <div class="hr"></div> 
+
+  <ion-row size-md class="centralizarTexto">
+    <ion-col>
+      <ion-img src="../assets/78.jpg"></ion-img>
+      <ion-button color="dark" shape="round" expand="block" size="small" (click)="whey()">Whey Protein</ion-button>
+    </ion-col>
+    <ion-col>
+      <ion-img src="../assets/9.jpg"></ion-img>
+      <ion-button color="dark" shape="round" expand="block" size="small" (click)="bcaa()"> BCAA </ion-button>
+    </ion-col>
+  </ion-row>
+  <ion-row size-md class="centralizarTexto">
+    <ion-col>
+      <ion-img src="../assets/6.jpg"></ion-img>
+      <ion-button color="dark" shape="round" expand="block" size="small" (click)="creatina()"> Creatina </ion-button>
+    </ion-col>
+    <ion-col>
+      <ion-img src="../assets/55.jpg"></ion-img>
+      <ion-button color="dark" shape="round" expand="block" size="small" (click)="tribulus()"> Tribulus </ion-button>
+    </ion-col>
+    
+  </ion-row>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- 
+  <ion-slides pager="true" autoplay="true" style="width: 200px; height: 200px;" [options]="slideOpts">
+    <ion-slide>
+      <ion-img src="../assets/2.png"></ion-img>
+    </ion-slide>
+    <ion-slide>
+      <ion-img src="../assets/3.png"></ion-img>
+    </ion-slide>
+    <ion-slide>
+      <ion-img src="../assets/4.png"></ion-img>
+    </ion-slide>
+  </ion-slides>
+
+  <ion-searchbar></ion-searchbar>
+
+  <ion-row>
+    <ion-col>
+      <ion-img style="width: 150px; height: 150px;" src="../assets/5.jpg"></ion-img>
+      <ion-button size="small" (click)="whey()">Whey Protein</ion-button>
+    </ion-col>
+
+    <ion-col>
+      <ion-img style="width: 150px; height: 150px;" src="../assets/6.png"></ion-img>
+      <ion-button size="small" (click)="bcaa()"> BCAA </ion-button>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col>
+      <ion-img style="width: 150px; height: 150px;" src="../assets/7.png"></ion-img>
+      <ion-button size="small" (click)="creatina()"> Creatine </ion-button>
+    </ion-col>
+
+    <ion-col>
+      <ion-img style="width: 150px; height: 150px;" src="../assets/8.jpg"></ion-img>
+      <ion-button size="small" (click)="tribulus()"> tribulus </ion-button>
+    </ion-col>
+  </ion-row>
+
+
+  <ion-fab vertical="bottom" horizontal="start">
+    <ion-fab-button>
+      <ion-icon name="aperture"></ion-icon>
+    </ion-fab-button>
+
+    <ion-fab-list side="top">
+      <ion-fab-button href="https://pt-br.facebook.com/">
+        <ion-icon name="logo-facebook"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button href="https://www.instagram.com/?hl=pt-br">
+        <ion-icon name="logo-instagram"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button href="https://twitter.com/login?lang=pt">
+        <ion-icon name="logo-twitter"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button href="https://www.youtube.com/">
+        <ion-icon name="logo-youtube"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+
+
+
+  </ion-fab>
+
+-->
+
+  <div class="hr"></div>
+
+
+</ion-content>

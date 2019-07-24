@@ -1,0 +1,101 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-back-button defaultHref="home-cliente"></ion-back-button>
+        
+      </ion-buttons>
+      <ion-buttons slot="secondary">
+        <ion-button (click)="logoff()" placeholder="Logar">
+          <ion-icon color="danger" slot="icon-only" name="log-out"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+      <ion-title style="text-align:center;font-size:25px;">SHAPE MIN.</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+<!--
+<form [formGroup]="formGroup">
+  <ion-list>
+    <ion-item>
+      <ion-label floating>Nome:</ion-label>
+      <ion-input formControlName="nome" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Telefone:</ion-label>
+      <ion-input formControlName="telefone" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>CNPJ:</ion-label>
+      <ion-input formControlName="cnpj" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Endereço:</ion-label>
+      <ion-input formControlName="endereco" type="text"></ion-input>
+    </ion-item>
+
+   
+  </ion-list>
+  
+  
+</form>
+-->
+
+
+<form [formGroup]="formGroup">
+<ion-row>
+  <ion-col>
+<div class="form-group row">
+  <label for="inputEmail3" class="col-sm-2 col-form-label">Nome:</label>
+  <div class="col-sm-10">
+    <input type="email"  placeholder="Insira o nome da sua loja aqui" formControlName="nome" class="form-control" id="inputEmail3"  >
+  </div>
+</div>
+</ion-col>
+</ion-row>
+<ion-row>
+  <ion-col>
+<div class="form-group row">
+  <label for="inputEmail3" class="col-sm-2 col-form-label">Telefone:</label>
+  <div class="col-sm-10">
+    <input type="email" placeholder="(00) 0000-0000" class="form-control" formControlName="telefone" id="inputEmail3"  name="phone" [brmasker]="{phone: true}" >
+    
+  </div>
+</div>
+</ion-col>
+</ion-row>
+<ion-row>
+  <ion-col>
+<div class="form-group row">
+  <label for="inputEmail3" class="col-sm-2 col-form-label">CNPJ:</label>
+  <div class="col-sm-10">
+    <input type="text" class="form-control" name="cpf" formControlName="cnpj" id="inputEmail3" placeholder="00.000.000/0000-00" [brmasker]="{person: true}" >
+  </div>
+</div>
+</ion-col>
+</ion-row>
+<ion-row>
+  <ion-col>
+<div class="form-group row">
+  <label for="inputEmail3" class="col-sm-2 col-form-label">Endereço:</label>
+  <div class="col-sm-10">
+    <input type="email" class="form-control" id="inputEmail3" formControlName="endereco"  >
+    <small id="emailHelp" class="form-text text-muted">Ex: R. Barcelos Domingos, 132 - Campo Grande, Rio de Janeiro </small>
+  </div>
+</div>
+
+</ion-col>
+</ion-row>
+
+
+<ion-row>
+<ion-col>
+<button expand="full" class="btn btn-primary btn-block" (click)="cadastrar()">CADASTRAR</button>
+</ion-col>
+</ion-row>
+</form>
+</ion-content>

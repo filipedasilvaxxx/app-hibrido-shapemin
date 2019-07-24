@@ -1,0 +1,31 @@
+<ion-app>
+  <ion-split-pane>
+    <ion-menu>
+      <ion-header>
+        <ion-toolbar style="text-align:center;">
+          <ion-title>MENU <ion-icon name="switch"></ion-icon></ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="menu-app">
+       
+        <div auto-hide="false" *ngFor="let p of appPages">
+
+        <ion-item [routerDirection]="'root'" [routerLink]="[p.url]"  ><ion-icon  [name]="p.icon"></ion-icon> {{p.title}}</ion-item>
+      
+        </div>    
+
+<!-- <div auto-hide="false" *ngFor="let p of appPages">
+            <p  [routerDirection]="'root'" [routerLink]="[p.url]">
+              <ion-icon slot="start" [name]="p.icon"></ion-icon>
+              <ion-label>
+                {{p.title}}
+              </ion-label>
+            </p>
+            
+          </div>
+        -->
+      </ion-content>
+    </ion-menu>
+    <ion-router-outlet main></ion-router-outlet>
+  </ion-split-pane>
+</ion-app>
