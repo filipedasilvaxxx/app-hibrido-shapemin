@@ -27,6 +27,9 @@ export class HomePage {
   email : string;
   
   listaDeProduto: Produto[] = [];
+
+  nomeProduto: Produto[] = [];
+
   listaPerfil : Loja[] = []; 
 
     constructor(public router : Router,
@@ -60,10 +63,12 @@ export class HomePage {
               r.setDados(doc.data());
               r.id = doc.id;
               
+              console.log(r.nome)
+              
               let ref = firebase.storage().ref().child(`produtos/${doc.id}.jpg`).getDownloadURL().then(url => {
                 r.img = url;
                 this.listaDeProduto.push(r);
-     
+              
               }).catch(err => {
                 this.listaDeProduto.push(r);
               })            

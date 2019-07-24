@@ -52,8 +52,8 @@ export class CadastroDeProdutoPage implements OnInit {
       marca: [''],
       descricao: [''],
       codigo: [''],
-      categoria: [''],
       preco: [''],
+      categoria: [''],
       
     })
   }
