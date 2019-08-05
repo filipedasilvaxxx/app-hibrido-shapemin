@@ -1,11 +1,8 @@
-
-
-
 <ion-header class="fadeIn">
- 
+
 
   <ion-toolbar>
-    
+
     <ion-buttons slot="secondary">
       <ion-button (click)="logar()" placeholder="Logar">
         <ion-icon slot="icon-only" name="contact"></ion-icon>
@@ -14,23 +11,23 @@
     <ion-title style="text-align:center;font-size:25px;">SHAPE MIN.</ion-title>
   </ion-toolbar>
   <ion-tabs>
-      <ion-tab-bar slot="bottom">
-        <ion-tab-button tab="tab1">
-          <ion-icon name="sunny"></ion-icon>
-          <ion-label>Tab1</ion-label>
-        </ion-tab-button>
-        <ion-tab-button tab="tab2">
-          <ion-icon name="sunny"></ion-icon>
-          <ion-label>Tab2</ion-label>
-        </ion-tab-button>
-        <ion-tab-button tab="tab3">
-          <ion-icon name="moon"></ion-icon>
-          <ion-label>Tab3</ion-label>
-        </ion-tab-button>
-      </ion-tab-bar>
-    </ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="tab1">
+        <ion-icon name="sunny"></ion-icon>
+        <ion-label>Tab1</ion-label>
+      </ion-tab-button>
+      <ion-tab-button tab="tab2">
+        <ion-icon name="sunny"></ion-icon>
+        <ion-label>Tab2</ion-label>
+      </ion-tab-button>
+      <ion-tab-button tab="tab3">
+        <ion-icon name="moon"></ion-icon>
+        <ion-label>Tab3</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
 
-<!--
+  <!--
   <ion-item>
     <ion-row>
       <ion-col>
@@ -64,7 +61,7 @@
 -->
 </ion-header>
 
-<ion-content padding class="fadeIn" >
+<ion-content padding class="fadeIn">
 
 
   <ion-slides pager="true" [options]="slideOptsOne ">
@@ -76,42 +73,46 @@
       </div>
     </ion-slide>
   </ion-slides>
-  
-  <ion-searchbar #textoBusca animated  debounce="500"  (ionChange)="busca()" ></ion-searchbar>
+
+  <ion-searchbar #textoBusca animated debounce="500" (ionChange)="busca()" ></ion-searchbar>
+
+    <ion-item *ngFor="let busca of listaDeProduto">
+      <ion-thumbnail slot="start">
+        <img src="{{busca?.img}}">
+      </ion-thumbnail>
+      <ion-label>{{busca?.nome}}</ion-label>
+    </ion-item>
     
-    
+    <!-- <ion-item *ngFor="let igual of produtoIgual" >
+        <ion-thumbnail slot="start">
+          <img  src="{{igual?.img}}">
+        </ion-thumbnail>
+        <ion-label >{{igual?.nome}}</ion-label>
+      </ion-item> -->
 
-  <ion-item  *ngFor="let busca of listaDeProduto"   >
-   <ion-thumbnail  slot="start" >
-     <img src="{{busca?.img}}">
-   </ion-thumbnail>
-   <ion-label>{{busca?.nome}}</ion-label>
- </ion-item>
- 
- <div class="hr"></div> 
-    <ion-row size-md class="centralizarTexto">
-        <ion-col>
-            <ion-img  src="../assets/78.jpg"></ion-img>
-            <ion-button color="dark" shape="round" expand="block" size="small" (click)="whey()">Whey Protein</ion-button>
-        </ion-col>
-        <ion-col>
-            <ion-img src="../assets/9.jpg"></ion-img>
-            <ion-button color="dark" shape="round" expand="block" size="small" (click)="bcaa()"> BCAA </ion-button>
-        </ion-col>
-     </ion-row>
-     <div class="hr"></div> 
-    <ion-row size-md class="centralizarTexto">
-        <ion-col>
-            <ion-img  src="../assets/6.jpg"></ion-img>
-            <ion-button color="dark" shape="round"  expand="block"size="small" (click)="creatina()"> Creatine </ion-button>
-        </ion-col>
-        <ion-col>
-            <ion-img src="../assets/55.jpg"></ion-img>
-            <ion-button color="dark" shape="round"  expand="block"size="small" (click)="tribulus()"> tribulus </ion-button>
-        </ion-col>
-     </ion-row>
 
-     
+  <div class="hr"></div>
+  <ion-row size-md class="centralizarTexto">
+    <ion-col>
+      <ion-img src="../assets/78.jpg"></ion-img>
+      <ion-button color="dark" shape="round" expand="block" size="small" (click)="whey()">Whey Protein</ion-button>
+    </ion-col>
+    <ion-col>
+      <ion-img src="../assets/9.jpg"></ion-img>
+      <ion-button color="dark" shape="round" expand="block" size="small" (click)="bcaa()"> BCAA </ion-button>
+    </ion-col>
+  </ion-row>
+  <div class="hr"></div>
+  <ion-row size-md class="centralizarTexto">
+    <ion-col>
+      <ion-img src="../assets/6.jpg"></ion-img>
+      <ion-button color="dark" shape="round" expand="block" size="small" (click)="creatina()"> Creatine </ion-button>
+    </ion-col>
+    <ion-col>
+      <ion-img src="../assets/55.jpg"></ion-img>
+      <ion-button color="dark" shape="round" expand="block" size="small" (click)="tribulus()"> tribulus </ion-button>
+    </ion-col>
+  </ion-row>
 
 
 
@@ -134,7 +135,9 @@
 
 
 
-<!-- 
+
+
+  <!-- 
   <ion-slides pager="true" autoplay="true" style="width: 200px; height: 200px;" [options]="slideOpts">
     <ion-slide>
       <ion-img src="../assets/2.png"></ion-img>

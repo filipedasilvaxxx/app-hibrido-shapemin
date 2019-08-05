@@ -13,76 +13,104 @@ import { Produto } from '../model/produto';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  
+
   @ViewChild("textoBusca") textoBusca;
 
   firestore = firebase.firestore();
   settings = { timestampsInSnapshots: true };
-  
+
   produto: Produto = new Produto();
+  produtoIgual: Produto[] = [];
+
+  r: Produto = new Produto();
 
   imagem: string;
 
   loja: Loja = new Loja();
-  email : string;
-  
+  email: string;
+
   listaDeProduto: Produto[] = [];
 
   nomeProduto: Produto[] = [];
 
-  listaPerfil : Loja[] = []; 
+  listaPerfil: Loja[] = [];
 
-    constructor(public router : Router,
-                private menu: MenuController,
-                private firebaseauth : AngularFireAuth,
-                public activatedRoute: ActivatedRoute,
-                public MenuC : MenuController){
-        
-      
-    }
+  maior = 1000.00;
+  menor = 0;
 
-    ngOnInit(){
-      this.MenuC.enable(false);
-    }
+  constructor(public router: Router,
+    private menu: MenuController,
+    private firebaseauth: AngularFireAuth,
+    public activatedRoute: ActivatedRoute,
+    public MenuC: MenuController) {
 
-    busca() {
-      console.log(this.textoBusca.value)
-  
-      this.listaDeProduto = [];
-      var ref = firebase.firestore().collection("produto");
-      //ref.orderBy('nome').startAfter(this.textoBusca.value).get().then(doc=> {    
-  
-      if (this.textoBusca.value != "") {
-        ref.orderBy('nome').startAfter(this.textoBusca.value).endAt(this.textoBusca.value + '\uf8ff').get().then(doc => {
-  
-          if (doc.size > 0) {
-  
-            doc.forEach(doc => {
-  
-              let r = new Produto();
-              r.setDados(doc.data());
-              r.id = doc.id;
-              
-              console.log(r.nome)
-              
-              let ref = firebase.storage().ref().child(`produtos/${doc.id}.jpg`).getDownloadURL().then(url => {
-                r.img = url;
-                this.listaDeProduto.push(r);
-              
-              }).catch(err => {
-                this.listaDeProduto.push(r);
-              })            
-            
-  
-          })
-  
-      } else {
-        // doc.data() will be undefined in this case
-        console.log("No such document!");
-      }
-    })
+
   }
-  
+
+  ngOnInit() {
+    this.MenuC.enable(false);
+  }
+
+  busca() {
+    let maior = "1000";
+    let menor = 0;
+
+    console.log(this.textoBusca.value)
+
+    this.listaDeProduto = [];
+    var ref = firebase.firestore().collection("produto");
+    //ref.orderBy('nome').startAfter(this.textoBusca.value).get().then(doc=> {    
+
+    if (this.textoBusca.value != "") {
+      ref.orderBy('nome').startAt(this.textoBusca.value).endAt(this.textoBusca.value + '\uf8ff').get().then(doc => {
+
+        if (doc.size > 0) {
+
+          doc.forEach(doc => {
+
+            let r = new Produto();
+            r.setDados(doc.data());
+            r.id = doc.id;
+
+           
+            
+
+              if(r.nomePrincipal != "") {
+                console.log(r.nomePrincipal)
+                console.log(r)
+                let ref = firebase.storage().ref().child(`produtos/${doc.id}.jpg`).getDownloadURL().then(url => {
+                  r.img = url;
+                }).catch(err => {
+                })
+                this.produtoIgual.push(r);
+                if(r.preco > maior ){
+                  // maior == r.preco 
+                  console.log(maior)
+                }
+                
+              }else{
+                console.log(r.nomePrincipal)
+                let ref = firebase.storage().ref().child(`produtos/${doc.id}.jpg`).getDownloadURL().then(url => {
+                  r.img = url;
+                }).catch(err => {
+                })
+                this.listaDeProduto.push(r);
+              }
+
+              console.log(maior)
+
+
+          })
+
+
+
+        } else {
+          // doc.data() will be undefined in this case
+          console.log("No such document!");
+        }
+      })
+    }
+
   }
 
   // dowloadImagem(){
@@ -93,74 +121,81 @@ export class HomePage {
   //     this.imagem = url;
   //   })
   // }
+  // nomeIgual(){
 
-  cadastrarLoja(){
-  this.router.navigate(['/cadastro-de-loja']);
+  //   if(r.nome = r.nome){
+  //     this.produtoIgual.push(r);
+  //     console.log(this.produtoIgual)
+  //   }
+  // }
+
+  cadastrarLoja() {
+    this.router.navigate(['/cadastro-de-loja']);
   }
-  
-  bcaa(){
+
+  bcaa() {
     this.router.navigate(['/bcaa']);
-    }
-  whey(){
+  }
+  whey() {
     this.router.navigate(['/whey-list']);
   }
-  creatina(){
+  creatina() {
     this.router.navigate(['/creatine-list']);
   }
-  tribulus(){
+  tribulus() {
     this.router.navigate(['/tribulus-list']);
   }
 
-  logar(){
+  logar() {
     this.router.navigate(['/list']);
-    }
-    
-  logoff(){
-      this.router.navigate(['/logoff']);
-      }
+  }
+
+  logoff() {
+    this.router.navigate(['/logoff']);
+  }
 
   openFirst() {
     this.menu.enable(true, 'first');
     this.menu.open('first');
   }
 
-  CalculeSuaIMC(){
+  CalculeSuaIMC() {
     this.router.navigate(['/imc']);
 
   }
-    
+
   slides = [
     {
-      img:'../assets/2.png',
-      titulo:'Whey Protein Gold Standard',
+      img: '../assets/2.png',
+      titulo: 'Whey Protein Gold Standard',
     },
     {
-      img:'../assets/3.png',
-      titulo:'Visivel',
+      img: '../assets/3.png',
+      titulo: 'Visivel',
     },
     {
-      img:'../assets/001.png',
-      titulo:'Hi-Whey Protein',
+      img: '../assets/001.png',
+      titulo: 'Hi-Whey Protein',
     },
-    
-  
-]
+
+
+  ]
 
 
 
-slideOptsOne = {
-  initialSlide: 0,
-  slidesPerView: 1,
-  autoplay:true,
-  speed: 1000,
- };
+  slideOptsOne = {
+    initialSlide: 0,
+    slidesPerView: 1,
+    autoplay: true,
+    speed: 1000,
+  };
 
 
-slidesDidLoad(slides: IonSlides) {
-  slides.startAutoplay();
-}
+  slidesDidLoad(slides: IonSlides) {
+    slides.startAutoplay();
+  }
 
 
-  
-  
+
+
 }

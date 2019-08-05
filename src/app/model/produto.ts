@@ -2,6 +2,7 @@ export class Produto {
 
     id: string;
     nome: string;
+    nomePrincipal: string;
     marca: string;
     descricao: string;
     codigo: string;
@@ -17,6 +18,7 @@ export class Produto {
     // Dados do firebase
     setDados(obj: any) {
         this.nome = obj.nome;
+        this.nomePrincipal = obj.nomePrincipal;
         this.marca = obj.marca;
         this.descricao = obj.descricao;
         this.codigo = obj.codigo;

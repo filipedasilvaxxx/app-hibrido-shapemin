@@ -49,6 +49,7 @@ export class CadastroDeProdutoPage implements OnInit {
       });
     this.formGroup = this.formBuilder.group({
       nome: [''],
+      nomePrincipal: [''],
       marca: [''],
       descricao: [''],
       codigo: [''],
