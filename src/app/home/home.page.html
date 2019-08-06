@@ -76,19 +76,39 @@
 
   <ion-searchbar #textoBusca animated debounce="500" (ionChange)="busca()" ></ion-searchbar>
 
+  <ion-item *ngIf="produtoMenor.nome != undefined ">
+    <ion-thumbnail slot="start" >
+      <img  src="{{produtoMenor.img}}">
+    </ion-thumbnail>
+    <ion-label style="font-size: 22px">{{produtoMenor?.nome}}</ion-label>
+    <ion-label style="font-size: 22px">{{produtoMenor?.preco}</ion-label>
+
+  </ion-item> 
+
+  <ion-item *ngFor="let igual of produtoIgual">
+    <ion-thumbnail slot="start">
+      <img src="{{igual?.img}}">
+    </ion-thumbnail>
+    <ion-label>{{igual?.nome}}</ion-label>
+    <ion-label>{{igual?.preco}}</ion-label>
+  </ion-item>
+
+  <ion-item *ngFor="let price of produtosIguais">
+    <ion-thumbnail slot="start">
+      <img src="{{price?.img}}">
+    </ion-thumbnail>
+    <ion-label>{{price?.nome}}</ion-label>
+    <ion-label>{{price?.preco}}</ion-label>
+  </ion-item>
+
     <ion-item *ngFor="let busca of listaDeProduto">
       <ion-thumbnail slot="start">
         <img src="{{busca?.img}}">
       </ion-thumbnail>
       <ion-label>{{busca?.nome}}</ion-label>
+      <ion-label>{{busca?.preco}}</ion-label>
+
     </ion-item>
-    
-    <!-- <ion-item *ngFor="let igual of produtoIgual" >
-        <ion-thumbnail slot="start">
-          <img  src="{{igual?.img}}">
-        </ion-thumbnail>
-        <ion-label >{{igual?.nome}}</ion-label>
-      </ion-item> -->
 
 
   <div class="hr"></div>

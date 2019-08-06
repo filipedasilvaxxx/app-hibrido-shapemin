@@ -33,7 +33,18 @@ export class AppComponent {
       url: '/imc',
       icon: 'stats'
     },
-  
+    
+    {
+      title: 'Sugestao',
+      url: '/sujestao',
+      icon: 'clipboard'
+    },
+
+    {
+      title: 'Quem Somos',
+      url: '/quem-somos',
+      icon: 'people'
+    },
     
   
   
