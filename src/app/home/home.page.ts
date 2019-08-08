@@ -51,7 +51,7 @@ export class HomePage {
   }
 
   busca() {
-    let menor = 0;
+    let menor = 0.0;
 
     console.log(this.textoBusca.value)
 
@@ -69,46 +69,17 @@ export class HomePage {
             let r = new Produto();
             r.setDados(doc.data());
             r.id = doc.id;
-
             
-            
-
-              if(r.nomePrincipal != "") {
-                // console.log(r.nomePrincipal)
-                // console.log(r)
-                let ref = firebase.storage().ref().child(`produtos/${doc.id}.jpg`).getDownloadURL().then(url => {
-                  r.img = url;
-                  if(parseFloat(r.preco) <= menor || menor ==0){
-                    menor = parseFloat(r.preco)   
-                    this.produtoMenor = r;
-                    // console.log(r)  
-                  } 
-                }).catch(err => {
-                })
-                
-                let tof = firebase.storage().ref().child(`produtos/${doc.id}.jpg`).getDownloadURL().then(url => {
-                  r.img = url;
-                  if(parseFloat(r.preco) >= menor){
-                    this.produtoIgual.push(r)
-                    console.log(this.produto)
-                  }
-                }).catch(err=>{
-                  
-                })
-                
-                let lat = firebase.storage().ref().child(`produtos/${doc.id}.jpg`).getDownloadURL().then(url => {
-                  r.img = url;
-                  if(r.nomePrincipal != ""){
-                   this.produtosIguais.push(r)
-                    // console.log(r)  
-                  } 
-                }).catch(err => {
-                })
-                
-               
-                
+              if(r.nomePrincipal != ""){
+                if(parseFloat(r.preco) <= menor || menor <= 0){
+                menor = parseFloat(r.preco)
+                this.produtoMenor = r;
+                console.log(r.preco)
+                console.log(this.produtoMenor.nome)
+                console.log("IF 1")
+                }
               }else{
-                console.log(r.nomePrincipal)
+               
                 let ref = firebase.storage().ref().child(`produtos/${doc.id}.jpg`).getDownloadURL().then(url => {
                   r.img = url;
                 }).catch(err => {
@@ -116,7 +87,7 @@ export class HomePage {
                 this.listaDeProduto.push(r);
               }
 
-              console.log(doc.data())
+              // console.log(doc.data())
 
 
           })
