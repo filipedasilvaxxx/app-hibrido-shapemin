@@ -6,6 +6,7 @@ import { ActionSheetController } from '@ionic/angular';
 
 import { ModalController } from '@ionic/angular';
 import { ModalPagePage } from '../modal-page/modal-page.page';
+import { Router } from '@angular/router';
 
 
 
@@ -30,7 +31,7 @@ export class TribulusListPage implements OnInit {
   listaTribulus : Produto[] = [];
 
   
-  constructor(public fire: AngularFireAuth,public actionSheetController: ActionSheetController,public modalController: ModalController,) { 
+  constructor(public fire: AngularFireAuth,public actionSheetController: ActionSheetController,public modalController: ModalController,public router: Router) { 
 
     this.fire.authState.subscribe(obj=>{
                   
@@ -44,8 +45,14 @@ export class TribulusListPage implements OnInit {
   }
 
   async presentModal() {
+    this.router.navigate(['/modal-page']);
     const modal = await this.modalController.create({
-      component: ModalPagePage
+      component: ModalPagePage,
+      componentProps: {
+        'firstName': this.listaTribulus,
+        'lastName': 'Adams',
+        'middleInitial': 'N'
+      }
     });
     return await modal.present();
   }
