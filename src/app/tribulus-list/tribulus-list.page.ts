@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import * as firebase from 'firebase';
 import { Produto } from '../model/produto';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { ActionSheetController } from '@ionic/angular';
+
+
+
 
 @Component({
   selector: 'app-tribulus-list',
@@ -22,7 +26,7 @@ export class TribulusListPage implements OnInit {
   listaTribulus : Produto[] = [];
 
   
-  constructor(public fire: AngularFireAuth) { 
+  constructor(public fire: AngularFireAuth,public actionSheetController: ActionSheetController) { 
 
     this.fire.authState.subscribe(obj=>{
                   
@@ -34,6 +38,8 @@ export class TribulusListPage implements OnInit {
   ngOnInit() {
     this.obterCategoria();
   }
+  
+  
 
 
   obterCategoria() {
@@ -53,4 +59,45 @@ export class TribulusListPage implements OnInit {
     });
   
   }
+  async presentActionSheet() {
+    const actionSheet = await this.actionSheetController.create({
+      header: 'Albums',
+      buttons: [{
+        text: 'Delete',
+        role: 'destructive',
+        icon: 'trash',
+        handler: () => {
+          console.log('Delete clicked');
+        }
+      }, {
+        text: 'Share',
+        icon: 'share',
+        handler: () => {
+          console.log('Share clicked');
+        }
+      }, {
+        text: 'Play (open modal)',
+        icon: 'arrow-dropright-circle',
+        handler: () => {
+          console.log('Play clicked');
+        }
+      }, {
+        text: 'Favorite',
+        icon: 'heart',
+        handler: () => {
+          console.log('Favorite clicked');
+        }
+      }, {
+        text: 'Cancel',
+        icon: 'close',
+        role: 'cancel',
+        handler: () => {
+          console.log('Cancel clicked');
+        }
+      }]
+    });
+    await actionSheet.present();
+  }
+
+
 }
