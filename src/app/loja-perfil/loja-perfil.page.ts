@@ -126,4 +126,7 @@ export class LojaPerfilPage implements OnInit {
     await loading.present();
   }
 
+  imc(){
+    this.router.navigate(['/imc']);
+  }
 }
