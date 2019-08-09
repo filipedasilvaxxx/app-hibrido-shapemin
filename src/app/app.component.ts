@@ -45,11 +45,7 @@ export class AppComponent {
       url: '/quem-somos',
       icon: 'people'
     },
-    {
-      title: '',
-      url: '/modal-page-page',
-      icon: ''
-    },
+
     
   
   
