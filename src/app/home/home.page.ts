@@ -78,6 +78,7 @@ export class HomePage {
             
             let ref = firebase.storage().ref().child(`produtos/${doc.id}.jpg`).getDownloadURL().then(url => {
               r.img = url;
+              
             }).catch(err => {
               console.log(r);
             })   

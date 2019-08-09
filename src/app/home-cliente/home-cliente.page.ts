@@ -24,11 +24,19 @@ export class HomeClientePage implements OnInit {
   email : string;
   nome : string;
   listaPerfil : Loja[] = []; 
-  imagem: string;
+  img: string;
+
+  produtos: Produto[] = [];
+
+  produtoMenor: Produto = new Produto();
 
   produto: Produto = new Produto();
 
+  lP: Produto = new Produto();
+
   listaDeProduto : Produto[] = [];
+
+  pL: Produto[] = [];
 
   id : string;
 
@@ -68,48 +76,7 @@ export class HomeClientePage implements OnInit {
       this.MenuC.enable(true);
     }
 
-    busca() {
-      console.log(this.textoBusca.value)
-  
-      this.listaDeProduto = [];
-      var ref = firebase.firestore().collection("produto");
-      //ref.orderBy('nome').startAfter(this.textoBusca.value).get().then(doc=> {    
-  
-      if (this.textoBusca.value != "") {
-        ref.orderBy('nome').startAfter(this.textoBusca.value).endAt(this.textoBusca.value + '\uf8ff').get().then(doc => {
-  
-          if (doc.size > 0) {
-  
-            doc.forEach(doc => {
-  
-              this.produto = new Produto();
-              this.produto.setDados(doc.data());
-              this.produto.id = doc.id;
-              console.log(this.produto)
-              
-              let ref = firebase.storage().ref()
-                .child(`produtos/${this.produto.id}.jpg`);
-  
-              ref.getDownloadURL().then(url => {
-                this.imagem = url;
-                
-              }).catch(() =>{
-  
-              });
-            
-              console.log(this.produto);
-            this.listaDeProduto.push(this.produto);
-  
-          })
-  
-      } else {
-        // doc.data() will be undefined in this case
-        console.log("No such document!");
-      }
-    })
-  }
-  
-  }
+    
     irCadastroLoja(){
       this.router.navigate(['/cadastro-de-loja']);
     }
@@ -158,16 +125,16 @@ export class HomeClientePage implements OnInit {
     }
 
 
-    bcaa(){
+    bcaa() {
       this.router.navigate(['/bcaa']);
-      }
-    whey(){
+    }
+    whey() {
       this.router.navigate(['/whey-list']);
     }
-    creatina(){
-      this.router.navigate(['/creatina-list']);
+    creatina() {
+      this.router.navigate(['/creatine-list']);
     }
-    tribulus(){
+    tribulus() {
       this.router.navigate(['/tribulus-list']);
     }
   
@@ -214,6 +181,91 @@ export class HomeClientePage implements OnInit {
     
   
 ]
+
+busca() {
+  let menor = 0;
+  let m = 0;
+
+  console.log(this.textoBusca.value)
+
+  // this.lP = [];
+  var ref = firebase.firestore().collection("produto");
+  //ref.orderBy('nome').startAfter(this.textoBusca.value).get().then(doc=> {    
+
+  if (this.textoBusca.value != "") {
+    ref.orderBy('nome').startAt(this.textoBusca.value).endAt(this.textoBusca.value + '\uf8ff').get().then(doc => {
+
+      if (doc.size > 0) {
+
+        doc.forEach(doc => {
+          
+          let r = new Produto();
+          r.setDados(doc.data());
+          r.id = doc.id;
+          
+          let ref = firebase.storage().ref().child(`produtos/${doc.id}.jpg`).getDownloadURL().then(url => {
+            r.img = url;
+          }).catch(err => {
+            console.log(r);
+          })   
+          
+          if (r.nomePrincipal != "") {
+            
+              
+              if (parseFloat(r.preco) <= menor || menor <= 0) {                                
+                menor = parseFloat(r.preco)              
+                let ref = firebase.storage().ref().child(`produtos/${r.id}.jpg`).getDownloadURL().then(url => {
+                  r.img = url;
+                  
+                }).catch(err => {
+                  console.log(r.id);
+                })                   
+                // console.log(r.preco)                  
+                this.produtoMenor = r;
+                // console.log(this.produtoMenor)
+                
+                                                                                                                             
+              }
+              if (parseFloat(r.preco) >= menor || menor == 0) { 
+                this.produtos.push(r);
+              //   console.log(this.produtos)
+              // console.log("IF 1")
+              }  
+            
+              
+          }else {
+           
+              if(parseFloat(r.preco) <= m || m <= 0) {
+                m = parseFloat(r.preco)
+                // console.log(m)
+                this.lP = r;
+                
+              }
+              if(parseFloat(r.preco) >= m || m >= 0){
+                this.pL.push(r);
+              }
+                                            
+          }
+       
+       
+
+          // console.log(doc.data())
+
+
+        })
+
+
+
+      } else {
+        // doc.data() will be undefined in this case
+        console.log("No such document!");
+      }
+    })
+  }
+
+}
+
+
 
 
 

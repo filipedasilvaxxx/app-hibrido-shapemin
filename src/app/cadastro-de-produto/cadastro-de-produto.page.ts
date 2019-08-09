@@ -31,7 +31,7 @@ export class CadastroDeProdutoPage implements OnInit {
   idFoto: string = "";
   listaCategoria: Categoria[] = [];
 
-  foto : string = "";
+  foto : string;
 
   constructor(public formBuilder: FormBuilder,
     public router: Router,
@@ -54,8 +54,7 @@ export class CadastroDeProdutoPage implements OnInit {
       descricao: [''],
       codigo: [''],
       preco: [''],
-      categoria: [''],
-      
+      categoria: [''] 
     })
   }
 
@@ -86,6 +85,7 @@ export class CadastroDeProdutoPage implements OnInit {
           })
           
         }
+        this.router.navigate(['/loja-perfil']); 
 
         // this.router.navigate(['/envia-foto',  {'foto' : resp.id}] )
         // console.log("ID: " + resp.id);
@@ -118,7 +118,11 @@ export class CadastroDeProdutoPage implements OnInit {
   }
 
 
- 
+  pegarImagem(event) {
+    this.imagem = event.srcElement.files[0];
+    this.foto = this.imagem;
+   console.log(this.imagem);
+ }
 
   
   async loading() {

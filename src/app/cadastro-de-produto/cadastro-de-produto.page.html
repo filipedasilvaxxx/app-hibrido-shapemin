@@ -17,6 +17,13 @@
 <ion-content>
 
 <form [formGroup]="formGroup" ng-submit="cadastrar()">
+
+    <ion-item>
+        <ion-icon name="images"></ion-icon>
+        <input type="file" (change)="pegarImagem($event)" />
+      </ion-item>
+      
+
     <ion-row>
         <ion-col>
       <div class="form-group row">

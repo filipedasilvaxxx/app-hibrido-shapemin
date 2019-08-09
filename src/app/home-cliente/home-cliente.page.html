@@ -59,12 +59,33 @@
     
     
 
-   <ion-item   *ngFor="let busca of listaDeProduto"   >
+  <ion-item *ngIf="produtoMenor.nome!=undefined">
     <ion-thumbnail slot="start" >
-      <img src="{{imagem}}">
+      <img  src="{{produtoMenor.img}}">
     </ion-thumbnail>
-    <ion-label>{{busca?.nome}}</ion-label>
-  </ion-item>
+    <ion-label >{{produtoMenor.nome}}</ion-label>
+    <ion-label >{{produtoMenor.preco}}</ion-label>
+    <ion-button (click)="presentModal(produtos)">Show Modal</ion-button>
+  </ion-item> 
+
+
+  <ion-item *ngIf="lP.nome!=undefined">
+    <ion-thumbnail slot="start" >
+      <img  src="{{lP.img}}">
+    </ion-thumbnail>
+    <ion-label >{{lP.nome}}</ion-label>
+    <ion-label >{{lP.preco}}</ion-label>
+  </ion-item> 
+
+    
+   
+    <ion-item *ngFor="let lista of pL">
+      <ion-thumbnail slot="start">
+        <img src="{{lista?.img}}">
+      </ion-thumbnail>
+      <ion-label>{{lista?.nome}}</ion-label>
+      <ion-label>{{lista?.preco}}</ion-label>
+    </ion-item>
   
   <div class="hr"></div> 
 
