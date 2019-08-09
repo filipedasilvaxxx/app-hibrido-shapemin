@@ -55,9 +55,11 @@ const routes: Routes = [
 
   { path: 'carrinho', loadChildren: './carrinho/carrinho.module#CarrinhoPageModule' },
 
-  { path: 'imc', loadChildren: './imc/imc.module#ImcPageModule' },  { path: 'select-more', loadChildren: './select-more/select-more.module#SelectMorePageModule' },
+  { path: 'imc', loadChildren: './imc/imc.module#ImcPageModule' },
+  { path: 'select-more', loadChildren: './select-more/select-more.module#SelectMorePageModule' },
   { path: 'quem-somos', loadChildren: './quem-somos/quem-somos.module#QuemSomosPageModule' },
   { path: 'sujestao', loadChildren: './sujestao/sujestao.module#SujestaoPageModule' },
+  { path: 'modal-page', loadChildren: './modal-page/modal-page.module#ModalPagePageModule' },
 
 
   

@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
 import { ListPage } from './list.page';
-import 'gl-ionic-background-video';
+// import 'gl-ionic-background-video';
 
 
 @NgModule({

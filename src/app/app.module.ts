@@ -14,7 +14,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { IonicStorageModule } from '@ionic/storage';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
+import { ModalPagePageModule } from './modal-page/modal-page.module';
 
 
 
@@ -32,6 +32,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AppRoutingModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule,
+    ModalPagePageModule,
     IonicStorageModule.forRoot(),
     NgbModule.forRoot(),
     

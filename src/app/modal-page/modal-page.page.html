@@ -1,0 +1,22 @@
+<ion-header translucent>
+    <ion-toolbar>
+      <ion-title>Modal Content</ion-title>
+      <ion-buttons slot="end">
+        <ion-button (click)="dismissModal()">Close</ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content fullscreen>
+    <ion-list>
+      <ion-item *ngFor="let produto of firstName">
+          <ion-thumbnail slot="start" >
+              <img src="{{produto?.img}}">
+            </ion-thumbnail>
+        <ion-label>
+          <h2>{{produto?.nome}}</h2>
+          <p>{{produto?.preco}}</p>
+        </ion-label>
+      </ion-item>
+      
+    </ion-list>
+  </ion-content>

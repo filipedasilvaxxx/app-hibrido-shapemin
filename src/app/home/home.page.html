@@ -82,32 +82,33 @@
     </ion-thumbnail>
     <ion-label >{{produtoMenor.nome}}</ion-label>
     <ion-label >{{produtoMenor.preco}}</ion-label>
-
+    <ion-button (click)="presentModal(produtos)">Show Modal</ion-button>
   </ion-item> 
 
-  <ion-item *ngFor="let igual of produtosIguais">
-    <ion-thumbnail slot="start">
-      <img src="{{igual?.img}}">
-    </ion-thumbnail>
-    <ion-label>{{igual?.nome}}</ion-label>
-    <ion-label>{{igual?.preco}}</ion-label>
-  </ion-item>
 
-  <!-- <ion-item *ngFor="let price of produtosIguais">
-    <ion-thumbnail slot="start">
-      <img src="{{price?.img}}">
+  <ion-item *ngIf="lP.nome!=undefined">
+    <ion-thumbnail slot="start" >
+      <img  src="{{lP.img}}">
     </ion-thumbnail>
-    <ion-label>{{price?.nome}}</ion-label>
-    <ion-label>{{price?.preco}}</ion-label>
-  </ion-item> -->
+    <ion-label >{{lP.nome}}</ion-label>
+    <ion-label >{{lP.preco}}</ion-label>
+  </ion-item> 
 
-    <ion-item *ngFor="let busca of listaDeProduto">
+    <!-- <ion-item *ngFor="let busca of listaDeProduto">
       <ion-thumbnail slot="start">
         <img src="{{busca?.img}}">
       </ion-thumbnail>
       <ion-label>{{busca?.nome}}</ion-label>
       <ion-label>{{busca?.preco}}</ion-label>
 
+    </ion-item> -->
+   
+    <ion-item *ngFor="let lista of pL">
+      <ion-thumbnail slot="start">
+        <img src="{{lista?.img}}">
+      </ion-thumbnail>
+      <ion-label>{{lista?.nome}}</ion-label>
+      <ion-label>{{lista?.preco}}</ion-label>
     </ion-item>
 
 

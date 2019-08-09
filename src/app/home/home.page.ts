@@ -5,6 +5,9 @@ import { Loja } from '../model/loja';
 import * as firebase from 'firebase';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Produto } from '../model/produto';
+import { ModalPagePage } from '../modal-page/modal-page.page';
+import { ModalController } from '@ionic/angular';
+
 
 
 @Component({
@@ -21,41 +24,44 @@ export class HomePage {
 
   produto: Produto = new Produto();
   produtoMenor: Produto = new Produto();
-  produtoIgual: Produto[] = [];
+
 
   r: Produto = new Produto();
 
-  imagem: string;
+  id: string;
+  img: string;
 
   loja: Loja = new Loja();
   email: string;
 
-  listaDeProduto: Produto[] = [];
-  produtosIguais: Produto[] = [];
+  lP: Produto = new Produto();
+  produtos: Produto[] = [];
+  pL: Produto[] = [];
 
-  listaPerfil: Loja[] = [];
-
-  
 
   constructor(public router: Router,
     private menu: MenuController,
     private firebaseauth: AngularFireAuth,
     public activatedRoute: ActivatedRoute,
-    public MenuC: MenuController) {
+    public modalController: ModalController) {
 
 
   }
+
+
 
   ngOnInit() {
-    this.MenuC.enable(false);
+
   }
 
+
   busca() {
-    let menor = 0.0;
+    let menor = 0;
+    let m = 0;
 
     console.log(this.textoBusca.value)
 
-    this.listaDeProduto = [];
+    // this.lP = [];
     var ref = firebase.firestore().collection("produto");
     //ref.orderBy('nome').startAfter(this.textoBusca.value).get().then(doc=> {    
 
@@ -65,29 +71,57 @@ export class HomePage {
         if (doc.size > 0) {
 
           doc.forEach(doc => {
-
+            
             let r = new Produto();
             r.setDados(doc.data());
             r.id = doc.id;
             
-              if(r.nomePrincipal != ""){
-                if(parseFloat(r.preco) <= menor || menor <= 0){
-                menor = parseFloat(r.preco)
-                this.produtoMenor = r;
-                console.log(r.preco)
-                console.log(this.produtoMenor.nome)
-                console.log("IF 1")
+            let ref = firebase.storage().ref().child(`produtos/${doc.id}.jpg`).getDownloadURL().then(url => {
+              r.img = url;
+            }).catch(err => {
+              console.log(r);
+            })   
+            
+            if (r.nomePrincipal != "") {
+              
+                
+                if (parseFloat(r.preco) <= menor || menor <= 0) {                                
+                  menor = parseFloat(r.preco)              
+                  let ref = firebase.storage().ref().child(`produtos/${r.id}.jpg`).getDownloadURL().then(url => {
+                    r.img = url;
+                  }).catch(err => {
+                    console.log(r.id);
+                  })                   
+                  // console.log(r.preco)                  
+                  this.produtoMenor = r;
+                  // console.log(this.produtoMenor)
+                  
+                                                                                                                               
                 }
-              }else{
-               
-                let ref = firebase.storage().ref().child(`produtos/${doc.id}.jpg`).getDownloadURL().then(url => {
-                  r.img = url;
-                }).catch(err => {
-                })
-                this.listaDeProduto.push(r);
-              }
+                if (parseFloat(r.preco) >= menor || menor == 0) { 
+                  this.produtos.push(r);
+                //   console.log(this.produtos)
+                // console.log("IF 1")
+                }  
+              
+                
+            }else {
+             
+                if(parseFloat(r.preco) <= m || m <= 0) {
+                  m = parseFloat(r.preco)
+                  // console.log(m)
+                  this.lP = r;
+                  
+                }
+                if(parseFloat(r.preco) >= m || m >= 0){
+                  this.pL.push(r);
+                }
+                                              
+            }
+         
+         
 
-              // console.log(doc.data())
+            // console.log(doc.data())
 
 
           })
@@ -185,6 +219,30 @@ export class HomePage {
     slides.startAutoplay();
   }
 
+
+  async presentModal() {
+    this.router.navigate(['/modal-page']);
+    const modal = await this.modalController.create({
+      component: ModalPagePage,
+      componentProps: {
+        'firstName': this.produtos,
+        'lastName': 'Adams',
+        'middleInitial': 'N'
+      }
+    });
+    return await modal.present();
+  }
+
+
+
+
+
+  // connectedCallback() {
+  //   const modalElement = document.querySelector('ion-modal');
+  //   console.log(modalElement.componentProps.firstName);
+
+
+  // }
 
 
 
