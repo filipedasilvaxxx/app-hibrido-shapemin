@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Produto } from '../model/produto';
 import * as firebase from 'firebase';
 
+
 @Component({
   selector: 'app-modal-page',
   templateUrl: './modal-page.page.html',

@@ -33,6 +33,7 @@ import { ModalPagePageModule } from './modal-page/modal-page.module';
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule,
     ModalPagePageModule,
+    ModalPagePageModule,
     IonicStorageModule.forRoot(),
     NgbModule.forRoot(),
     

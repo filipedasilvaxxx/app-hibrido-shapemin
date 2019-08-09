@@ -1,17 +1,25 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Lista de Tribulus</ion-title>
+<ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home-cliente"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="secondary">
+      <ion-button>
+          <ion-menu-button autoHide="false"></ion-menu-button>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Tribulus</ion-title>
   </ion-toolbar>
-</ion-header>
-
+  
+  
 <ion-content>
-
+  
+   
   <ion-row > 
     
     <ion-col *ngFor="let tribulus of listaTribulus">
       <ion-card>
         <ion-img style="width: 150px; height: 150px;" src=""></ion-img>
-        <ion-button size="small">{{tribulus?.nome}}</ion-button>
+        <ion-button size="small" (click)="presentModal()">{{tribulus?.nome}}</ion-button>
         <ion-card-subtitle>{{tribulus?.preco}}</ion-card-subtitle>
       </ion-card>
     </ion-col>

@@ -2,6 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import * as firebase from 'firebase';
 import { Produto } from '../model/produto';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { ActionSheetController } from '@ionic/angular';
+
+import { ModalController } from '@ionic/angular';
+import { ModalPagePage } from '../modal-page/modal-page.page';
+import { Router } from '@angular/router';
+
+
+
+
 
 @Component({
   selector: 'app-tribulus-list',
@@ -22,7 +31,7 @@ export class TribulusListPage implements OnInit {
   listaTribulus : Produto[] = [];
 
   
-  constructor(public fire: AngularFireAuth) { 
+  constructor(public fire: AngularFireAuth,public actionSheetController: ActionSheetController,public modalController: ModalController,public router: Router) { 
 
     this.fire.authState.subscribe(obj=>{
                   
@@ -34,6 +43,20 @@ export class TribulusListPage implements OnInit {
   ngOnInit() {
     this.obterCategoria();
   }
+
+  async presentModal() {
+    this.router.navigate(['/modal-page']);
+    const modal = await this.modalController.create({
+      component: ModalPagePage,
+      componentProps: {
+        'firstName': this.listaTribulus,
+        'lastName': 'Adams',
+        'middleInitial': 'N'
+      }
+    });
+    return await modal.present();
+  }
+
 
 
   obterCategoria() {
@@ -53,4 +76,7 @@ export class TribulusListPage implements OnInit {
     });
   
   }
+
+
+
 }

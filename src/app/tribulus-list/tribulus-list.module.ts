@@ -23,4 +23,9 @@ const routes: Routes = [
   ],
   declarations: [TribulusListPage]
 })
+
+
 export class TribulusListPageModule {}
+
+const menuCtrl = document.querySelector('ion-menu-controller');
+
