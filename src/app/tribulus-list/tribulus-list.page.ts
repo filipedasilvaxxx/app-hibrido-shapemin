@@ -4,6 +4,10 @@ import { Produto } from '../model/produto';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { ActionSheetController } from '@ionic/angular';
 
+import { ModalController } from '@ionic/angular';
+import { ModalPagePage } from '../modal-page/modal-page.page';
+
+
 
 
 
@@ -26,7 +30,7 @@ export class TribulusListPage implements OnInit {
   listaTribulus : Produto[] = [];
 
   
-  constructor(public fire: AngularFireAuth,public actionSheetController: ActionSheetController) { 
+  constructor(public fire: AngularFireAuth,public actionSheetController: ActionSheetController,public modalController: ModalController,) { 
 
     this.fire.authState.subscribe(obj=>{
                   
@@ -38,8 +42,14 @@ export class TribulusListPage implements OnInit {
   ngOnInit() {
     this.obterCategoria();
   }
-  
-  
+
+  async presentModal() {
+    const modal = await this.modalController.create({
+      component: ModalPagePage
+    });
+    return await modal.present();
+  }
+
 
 
   obterCategoria() {
@@ -59,45 +69,7 @@ export class TribulusListPage implements OnInit {
     });
   
   }
-  async presentActionSheet() {
-    const actionSheet = await this.actionSheetController.create({
-      header: 'Albums',
-      buttons: [{
-        text: 'Delete',
-        role: 'destructive',
-        icon: 'trash',
-        handler: () => {
-          console.log('Delete clicked');
-        }
-      }, {
-        text: 'Share',
-        icon: 'share',
-        handler: () => {
-          console.log('Share clicked');
-        }
-      }, {
-        text: 'Play (open modal)',
-        icon: 'arrow-dropright-circle',
-        handler: () => {
-          console.log('Play clicked');
-        }
-      }, {
-        text: 'Favorite',
-        icon: 'heart',
-        handler: () => {
-          console.log('Favorite clicked');
-        }
-      }, {
-        text: 'Cancel',
-        icon: 'close',
-        role: 'cancel',
-        handler: () => {
-          console.log('Cancel clicked');
-        }
-      }]
-    });
-    await actionSheet.present();
-  }
+
 
 
 }
