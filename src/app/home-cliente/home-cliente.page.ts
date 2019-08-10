@@ -126,7 +126,7 @@ export class HomeClientePage implements OnInit {
 
 
     bcaa() {
-      this.router.navigate(['/bcaa']);
+      this.router.navigate(['/bcaa-list']);
     }
     whey() {
       this.router.navigate(['/whey-list']);
